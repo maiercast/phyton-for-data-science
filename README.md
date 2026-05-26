@@ -6,30 +6,10 @@
 - Realizar el Análisis Exploratorio de Datos (EDA) de un conjunto de datos utilizando **Pandas**.
 - Desarrollar una aplicación interactiva en **Streamlit** que cargue y visualice un conjunto de datos estándar, aplicando conceptos de manipulación de datos con **Pandas** e integración de *widgets* interactivos.
 
-## Dataset seleccionado: California House Prices (modificado)
+## Dataset seleccionado
 
-Utilizaremos el *dataset* de precios de viviendas de California, un conjunto de datos clásico.
+Utilizaremos el *dataset* del curso de Power BI modificado previamente por el profesor para contener los desafios necesarios para el Proyecto. 
 
-* **Librería de Origen:** `sklearn.datasets`
-* **Fuente:** Este dataset fue creado a partir de datos del censo de 1990 en California.
-
-### Descripción del Dataset
-
-El *dataset* de California contiene datos sobre la mediana de ingresos, la edad de las casas y otras métricas geográficas y socioeconómicas a nivel de grupo de bloques (la unidad geográfica más pequeña para la que la Oficina del Censo de EE. UU. publica datos de muestra).
-
-| Característica       | Descripción                                                        |
-|:---------------------|:-------------------------------------------------------------------|
-| MedInc               | Mediana de ingresos del grupo de bloques.                          |
-| HouseAge             | Mediana de la edad de las casas dentro del grupo de bloques.       |
-| AveRooms             | Promedio de habitaciones por hogar.                                |
-| AveBedrms            | Promedio de dormitorios por hogar.                                 |
-| Population           | Población del grupo de bloques.                                    |
-| AveOccup             | Promedio del número de miemros del hogar.                          |
-| Latitude             | Latitud del centro geográfico del grupo de bloques.                |
-| Longitude            | Longitud del centro geográfico del grupo de bloques.               |
-| MedHouseVal (Target) | Mediana del valor de la vivienda (en cientos de miles de dólares). |
-
----
 
 ## Actividades Requeridas del Proyecto
 
@@ -49,9 +29,9 @@ La segunda fase realizada en el archivo `app.py` consiste en:
 
 En el archivo `notebooks/practice.ipynb`: 
 
-1. **Carga y Estructura:** Cargar el archivo `data/california_housing.csv` y conviértelo en un DataFrame de Pandas.
-2. **EDA**: Realiza un Análisis Exploratorio de Datos (EDA) del DataFrame utilizando Pandas, límpialo y obtiene un nuevo dataframe.
-3. **Grabar**: Graba el DataFrame en un archivo CSV con un nuevo nombre descriptivo en el directorio `data/`.
+1. **Carga y Estructura:** Cargar el dataset que encontrarás en directorio `data/raw` y lo convertirás en un DataFrame de Pandas.
+2. **EDA**: Realizar un Análisis Exploratorio de Datos (EDA) del DataFrame utilizando Pandas, límpiarlo para obtener un nuevo dataframe.
+3. **Grabar**: Grabar el nuevo DataFrame en un archivo CSV con un nuevo nombre descriptivo en el directorio `data/processed`.
 
 ### Segunda Fase
 
@@ -62,29 +42,26 @@ Esta fase se centra en usar los *widgets* de Streamlit para permitir al usuario 
 
 1.  **Sidebar de Control (`st.sidebar`):**
     * Implementar un `st.sidebar.markdown()` para el título y descripción de los filtros.
-2.  **Filtro por Estilo de Vivienda (`st.slider`):**
-    * Crear un **slider** que permita al usuario seleccionar un rango de la Edad Mediana de la Casa (HouseAge).
-    * Rango: El rango del slider debe ir desde el mínimo hasta el máximo de la columna HouseAge.
-    * Filtrar el DataFrame para incluir solo las viviendas cuya edad mediana caiga dentro del rango seleccionado por el usuario.
-3.  **Filtro de Vecindario (`st.checkbox`):**
-    * Implementar un campo de entrada numérico (`st.number_input`) que permita al usuario establecer la Latitud Mínima.
-    * Filtrar el DataFrame para incluir solo los grupos de bloques con una Latitude mayor o igual al valor ingresado.
-4.  **Resumen Descriptivo:**
-    * Mostrar la mediana y el rango (Máximo - Mínimo) del valor de la vivienda MedHouseVal del DataFrame resultante después de aplicar todos los filtros.
+2.  **Filtros (`st.slider`):**
+    * Crear un **slider** que permita al usuario seleccionar un rango de alguna columna del DataFrame.
+    * Rango: El rango del slider debe ir desde el mínimo hasta el máximo de la columna.
+    * Filtrar el DataFrame para incluir solo los registros cuyo valor se encuentre dentro del rango seleccionado por el usuario.
+3.  **Resumen Descriptivo:**
+    * Mostrar la mediana y el rango (Máximo - Mínimo), la media, desviación estándar y los quartiles de las columnas del DataFrame resultante después de aplicar todos los filtros.
 
 #### Visualización Dinámica
 
 Deberás mostrar la relación entre las variables utilizando gráficos que se actualicen automáticamente con los filtros anteriores.
 
 1.  **Gráfico de Distribución del Target (`st.pyplot` o `st.plotly_chart`):**
-    * Crear un **histograma** de la variable objetivo (**MedHouseVal**) utilizando una librería externa (como Matplotlib o Plotly).
+    * Crear un **histograma** de la variable objetivo utilizando una librería externa (como Matplotlib o Plotly).
     * **Requisito:** El gráfico debe reflejar la distribución de los datos **después** de aplicar los filtros del usuario.
 2.  **Gráfico de Dispersión (Regresión):**
-    * Crear un gráfico de dispersión (scatter plot) que muestre la relación entre la Mediana de Ingresos (MedInc) (eje X) y el Valor Mediano de la Vivienda (MedHouseVal) (eje Y).
+    * Crear un gráfico de dispersión (scatter plot) que muestre la relación entre dos columnas del DataFrame.
     * **Requisito:** Este gráfico también debe actualizarse con los datos filtrados y ser lo suficientemente informativo (ej. incluir etiquetas y un título).
 3.  ** Opcional - Mapa Geográfico** (Streamlit Nativo o Plotly):
-    * Utilizar la función nativa de Streamlit (st.map()) o un gráfico de dispersión de Plotly con st.plotly_chart() para mapear los grupos de bloques filtrados usando las columnas Latitude y Longitude.
-    * Requisito: El mapa debe mostrar la distribución geográfica de las viviendas filtradas por el usuario.
+    * Si tu Dataset contiene valores de longitud y latitud utiliza la función nativa de Streamlit (st.map()) o un gráfico de dispersión de Plotly con st.plotly_chart() para mapear los valores de algunas columnas.
+    * Requisito: El mapa debe mostrar la distribución geográfica de los valores filtrados por el usuario.
 
 ---
 
