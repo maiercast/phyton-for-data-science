@@ -205,3 +205,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Datasets grandes (excluidos por tamaño)
+data/raw/hogares_ext_26_02.csv
+data/raw/personas_ext_26_02.csv
