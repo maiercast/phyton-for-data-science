@@ -15,9 +15,9 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     import gdown
-    url = "https://drive.google.com/uc?id=14hoGUYsbePQ2MqDmusHlCt1J8O9H3wFY"
-    gdown.download(url, "censo_hogares_2023_limpio.csv", quiet=False)
-    df = pd.read_csv("censo_hogares_2023_limpio.csv", low_memory=False)
+    url = "https://drive.google.com/uc?id=1DfvVP8AfYRB0b0ZVmY9Nk8-D01ofmo2E"
+    gdown.download(url, "censo_app.csv", quiet=False)
+    df = pd.read_csv("censo_app.csv", low_memory=False)
     return df
 
 df = load_data()
