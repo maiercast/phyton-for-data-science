@@ -19,9 +19,6 @@ def load_data():
     gdown.download(url, "censo_hogares_2023_limpio.csv", quiet=False)
     df = pd.read_csv("censo_hogares_2023_limpio.csv", low_memory=False)
     return df
-    except Exception as e:
-        st.error(f"Error cargando datos: {e}")
-        st.stop()
 
 df = load_data()
 
