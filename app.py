@@ -14,7 +14,10 @@ st.set_page_config(
 # ── Carga de datos ───────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/processed/censo_hogares_2023_limpio.csv", low_memory=False)
+    import gdown
+    url = "https://drive.google.com/uc?id=14hoGUYsbePQ2MqDmusHlCt1J8O9H3wFY"
+    gdown.download(url, "censo_hogares_2023_limpio.csv", quiet=False)
+    df = pd.read_csv("censo_hogares_2023_limpio.csv", low_memory=False)
     return df
 
 df = load_data()
