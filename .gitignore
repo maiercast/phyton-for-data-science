@@ -207,5 +207,5 @@ cython_debug/
 .pypirc
 
 # Datasets grandes (excluidos por tamaño)
-data/raw/hogares_ext_26_02.csv
+data/processed/censo_hogares_2023_limpio.csv
 data/raw/personas_ext_26_02.csv
